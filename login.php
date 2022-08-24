@@ -152,6 +152,9 @@ html, body {
 					?>
 
 					<h1 class="text-center">Login Member </h1>
+					<div class="mx-auto text-center">
+						<a href="contact.php" class="btn btn-primary text-center">Info</a>
+					</div>
 
 					<div class="row form-group">
 						<div class="col-md-2 text-md-right">
