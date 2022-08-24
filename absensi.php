@@ -8,9 +8,17 @@ if (!isset($_SESSION['loggedin'])) {
 	exit();
 }
 
+if ($_POST != []) {
+    $absensi = $_POST['absensi'];
+    $no = $_POST['no'];
+    $sql = "UPDATE mahasiswa SET absensi = $absensi WHERE id = $no";
+    mysqli_query($db, $sql);
+}
+
 $sql2 = "SELECT * FROM mahasiswa";
 $mahasiswaResult = mysqli_query($db, $sql2);
 $mahasiswa = mysqli_fetch_all($mahasiswaResult);
+$mahasiswaShow = false;
 if ($mahasiswa != []) {
 	$mahasiswaShow = true;
 }
@@ -35,7 +43,6 @@ if ($mahasiswa != []) {
         <div class="card mt-3 mx-auto">
             <div class="card-body text-center">
                 <h4 class="mb-1">Daftar Mahasiswa</h4>
-                <a href="mahasiswaCreate.php" class="btn btn-danger d-block mb-4">Tambah Mahasiswa</a>
                 <div class="row my-2">
                     <table class="table table-striped">
                         <thead class="bg-secondary text-white">
@@ -55,18 +62,23 @@ if ($mahasiswa != []) {
                                     <tr>
                                         <th scope="row"><?= $i++ ?></th>
                                         <td><?= $m[1] ?></td>
-                                        <td><?= $m[2] ?></td>
-                                        <td><?= $m[3] ?></td>
-                                        <td><?= $m[3] ?></td>
-                                        <td><input type="number" name="absensi" id=""></td>
+                                        <td><?= $m[4] ?></td>
+                                        <td>7</td>
+                                        <td><?php if($m[4]>=5){echo"A";}else if($m[4]>=3&&$m[4<5]){echo"B";}else{echo"C";} ?></td>
+                                        <form action="" method="post">
                                         <td>
-                                            <a href="./mahasiswaUpdate.php?no=<?= $m[0] ?>" class="btn btn-success">Terima</a>
+                                            <input type="number" name="absensi" class="form-control">
+                                            <input type="hidden" name="no" value="<?= $m[0] ?>">
                                         </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-success">Terima</button>
+                                        </td>
+                                        </form>
                                     </tr>
                                 <?php } ?>
                             <?php } else { ?>
                                 <tr>
-                                    <td colspan="5" class="text-center">Belum ada data</td>
+                                    <td colspan="7" class="text-center">Belum ada data</td>
                                 </tr>
                             <?php } ?>
                         </tbody>

@@ -11,6 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 $sql = "SELECT * FROM guru";
 $guruResult = mysqli_query($db, $sql);
 $guru = mysqli_fetch_all($guruResult);
+$guruShow = false;
 if ($guru != []) {
 	$guruShow = true;
 }
@@ -18,6 +19,7 @@ if ($guru != []) {
 $sql2 = "SELECT * FROM mahasiswa";
 $mahasiswaResult = mysqli_query($db, $sql2);
 $mahasiswa = mysqli_fetch_all($mahasiswaResult);
+$mahasiswaShow = false;
 if ($mahasiswa != []) {
 	$mahasiswaShow = true;
 }

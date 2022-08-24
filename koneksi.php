@@ -1,8 +1,8 @@
 <?php
 
 $server     = "localhost";
-$user       = "root";
-$password   = "root";
+$user       = "tugas";
+$password   = "tugas";
 $nama_database = "vsga";
 
 $db = mysqli_connect($server, $user, $password, $nama_database);
